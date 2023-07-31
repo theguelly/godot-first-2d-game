@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://cj3b5o02mbmbq"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f8fjj"]
-[ext_resource type="Texture2D" uid="uid://quej32dnhmh1" path="res://Mini Pixel Pack 3/Space_BG (2 frames) (64 x 64).png" id="1_vhp2o"]
 [ext_resource type="PackedScene" uid="uid://wu5wq74iwpu7" path="res://player.tscn" id="2_awrxc"]
+[ext_resource type="Texture2D" uid="uid://quej32dnhmh1" path="res://assets/mini_pixel_pack_3/Space_BG (2 frames) (64 x 64).png" id="2_lxg2y"]
 [ext_resource type="PackedScene" uid="uid://cuus2lgqr0svr" path="res://ui.tscn" id="4_xtkop"]
-[ext_resource type="Texture2D" uid="uid://c30hj538rqbd2" path="res://Mini Pixel Pack 3/UI objects/START (48 x 8).png" id="5_6vn1y"]
-[ext_resource type="Texture2D" uid="uid://chup6k055u03a" path="res://Mini Pixel Pack 3/UI objects/GAME_OVER (72 x 8).png" id="6_3p8x3"]
+[ext_resource type="Texture2D" uid="uid://c30hj538rqbd2" path="res://assets/mini_pixel_pack_3/UI objects/START (48 x 8).png" id="5_4ust6"]
+[ext_resource type="Texture2D" uid="uid://chup6k055u03a" path="res://assets/mini_pixel_pack_3/UI objects/GAME_OVER (72 x 8).png" id="6_hawga"]
 
 [sub_resource type="Animation" id="Animation_prj03"]
 length = 0.001
@@ -46,11 +46,12 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_f8fjj")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
-texture = ExtResource("1_vhp2o")
+texture = ExtResource("2_lxg2y")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 240, 320)
@@ -64,6 +65,7 @@ libraries = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("4_xtkop")]
 
@@ -75,12 +77,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Start" type="TextureButton" parent="CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(240, 320)
 layout_mode = 2
-texture_normal = ExtResource("5_6vn1y")
+texture_normal = ExtResource("5_4ust6")
+stretch_mode = 3
 
 [node name="GameOver" type="TextureRect" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("6_3p8x3")
+texture = ExtResource("6_hawga")
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="shield_changed" from="Player" to="." method="_on_player_shield_changed"]

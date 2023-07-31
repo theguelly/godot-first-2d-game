@@ -1,34 +1,34 @@
 [gd_scene load_steps=15 format=3 uid="uid://wu5wq74iwpu7"]
 
-[ext_resource type="Texture2D" uid="uid://bkyhjv74ygp4o" path="res://Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="1_e1isc"]
 [ext_resource type="Script" path="res://player.gd" id="1_exyhk"]
 [ext_resource type="PackedScene" uid="uid://dsjgfg7d6uma" path="res://bullet.tscn" id="2_kut75"]
-[ext_resource type="Texture2D" uid="uid://cc2ka30ornr7j" path="res://Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="2_o1mp8"]
-[ext_resource type="Texture2D" uid="uid://be2ekb4oby65r" path="res://Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="3_l0glk"]
-[ext_resource type="Texture2D" uid="uid://1jh67mcsv56x" path="res://Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="4_465cj"]
+[ext_resource type="Texture2D" uid="uid://bkyhjv74ygp4o" path="res://assets/mini_pixel_pack_3/Player ship/Player_ship (16 x 16).png" id="3_r75j6"]
+[ext_resource type="Texture2D" uid="uid://cc2ka30ornr7j" path="res://assets/mini_pixel_pack_3/Player ship/Boosters (16 x 16).png" id="4_hhjae"]
+[ext_resource type="Texture2D" uid="uid://be2ekb4oby65r" path="res://assets/mini_pixel_pack_3/Player ship/Boosters_left (16 x 16).png" id="5_2hulo"]
+[ext_resource type="Texture2D" uid="uid://1jh67mcsv56x" path="res://assets/mini_pixel_pack_3/Player ship/Boosters_right (16 x 16).png" id="6_p2cwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5rjm"]
-atlas = ExtResource("2_o1mp8")
+atlas = ExtResource("4_hhjae")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57yy8"]
-atlas = ExtResource("2_o1mp8")
+atlas = ExtResource("4_hhjae")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odae2"]
-atlas = ExtResource("3_l0glk")
+atlas = ExtResource("5_2hulo")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs4c1"]
-atlas = ExtResource("3_l0glk")
+atlas = ExtResource("5_2hulo")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8cpj"]
-atlas = ExtResource("4_465cj")
+atlas = ExtResource("6_p2cwq")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfvuk"]
-atlas = ExtResource("4_465cj")
+atlas = ExtResource("6_p2cwq")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cwy8w"]
@@ -75,7 +75,7 @@ script = ExtResource("1_exyhk")
 bullet_scene = ExtResource("2_kut75")
 
 [node name="Ship" type="Sprite2D" parent="."]
-texture = ExtResource("1_e1isc")
+texture = ExtResource("3_r75j6")
 hframes = 3
 frame = 1
 

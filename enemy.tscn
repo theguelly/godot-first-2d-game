@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbait21t7tafw"]
 
-[ext_resource type="Texture2D" uid="uid://c5535iua2di43" path="res://Mini Pixel Pack 3/Enemies/Bon_Bon (16 x 16).png" id="1_65r5s"]
-[ext_resource type="Texture2D" uid="uid://bew18hjijjrhn" path="res://Mini Pixel Pack 3/Effects/Explosion (16 x 16).png" id="1_af8hk"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_el3h3"]
+[ext_resource type="Texture2D" uid="uid://c5535iua2di43" path="res://assets/mini_pixel_pack_3/Enemies/Bon_Bon (16 x 16).png" id="2_r0uic"]
+[ext_resource type="Texture2D" uid="uid://bew18hjijjrhn" path="res://assets/mini_pixel_pack_3/Effects/Explosion (16 x 16).png" id="3_xlgmj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ra0"]
 size = Vector2(14, 8)
@@ -60,7 +60,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_65r5s")]
+"values": [ExtResource("2_r0uic")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -89,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_af8hk")]
+"values": [ExtResource("3_xlgmj")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -127,7 +127,7 @@ _data = {
 script = ExtResource("1_el3h3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_65r5s")
+texture = ExtResource("2_r0uic")
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -145,5 +145,8 @@ one_shot = true
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
