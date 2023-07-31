@@ -1,0 +1,107 @@
+[gd_scene load_steps=18 format=3 uid="uid://dwdwyg5ddsygd"]
+
+[ext_resource type="Script" path="res://score_counter.gd" id="1_ex2qn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e3d54"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2nbi"]
+atlas = SubResource("CompressedTexture2D_e3d54")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4qxnp"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly2sh"]
+atlas = SubResource("CompressedTexture2D_4qxnp")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dujxp"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b86ox"]
+atlas = SubResource("CompressedTexture2D_dujxp")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2sj0r"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khbrm"]
+atlas = SubResource("CompressedTexture2D_2sj0r")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_arqv6"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekbg8"]
+atlas = SubResource("CompressedTexture2D_arqv6")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l830b"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38ert"]
+atlas = SubResource("CompressedTexture2D_l830b")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mmgcx"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibleq"]
+atlas = SubResource("CompressedTexture2D_mmgcx")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uq4fk"]
+load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gur45"]
+atlas = SubResource("CompressedTexture2D_uq4fk")
+region = Rect2(32, 8, 8, 8)
+
+[node name="ScoreCounter" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("1_ex2qn")
+
+[node name="Digit0" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_q2nbi")
+stretch_mode = 5
+
+[node name="Digit1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ly2sh")
+stretch_mode = 5
+
+[node name="Digit2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_b86ox")
+stretch_mode = 5
+
+[node name="Digit3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_khbrm")
+stretch_mode = 5
+
+[node name="Digit4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ekbg8")
+stretch_mode = 5
+
+[node name="Digit5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_38ert")
+stretch_mode = 5
+
+[node name="Digit6" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ibleq")
+stretch_mode = 5
+
+[node name="Digit7" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_gur45")
+stretch_mode = 5
