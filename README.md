@@ -5,6 +5,7 @@
 Welcome to the 2D Space Shooter game repository! This project is a space shooter game created by me using the Godot 4 engine. It's a work-in-progress, and I followed a fantastic tutorial provided by [KidsCanCode](https://kidscancode.org/godot_recipes/4.x/games/first_2d/index.html) to build the foundation of this game.
 
 ## How to Play
+* Game link: [2D Space Shooter (WIP) on itch.io](https://theguelly.itch.io/2d-space-shooter-wip?secret=J46gkCKJtO2DuWZg93I55Vqv5s)
 * To play the game, you can either download the executable from the releases section or build it from the source code using Godot 4.
 * Use the arrow keys to move your spaceship in different directions.
 * Press the spacebar to shoot lasers at the enemies and destroy them.
