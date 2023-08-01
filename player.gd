@@ -4,9 +4,9 @@ signal shield_changed
 
 @onready var screensize = get_viewport_rect().size
 @export var speed = 150
-@export var cooldown = 0.25
+@export var cooldown = 0.75
 @export var bullet_scene : PackedScene
-@export var max_shield = 10
+@export var max_shield = 30
 
 var can_shoot = true
 var shield = 0:
@@ -59,7 +59,7 @@ func set_shield(value):
 func _on_area_entered(area):
 	if area.is_in_group('enemies'):
 		area.explode()
-		shield -= max_shield / 2
+		shield -= max_shield / 3
 
 func is_dead():
 	if shield <= 0:

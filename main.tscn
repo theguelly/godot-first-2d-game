@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cuus2lgqr0svr" path="res://ui.tscn" id="4_xtkop"]
 [ext_resource type="Texture2D" uid="uid://c30hj538rqbd2" path="res://assets/mini_pixel_pack_3/UI objects/START (48 x 8).png" id="5_4ust6"]
 [ext_resource type="Texture2D" uid="uid://chup6k055u03a" path="res://assets/mini_pixel_pack_3/UI objects/GAME_OVER (72 x 8).png" id="6_hawga"]
-[ext_resource type="Script" path="res://PauseMenu.gd" id="7_vut38"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="7_0edch"]
 
 [sub_resource type="Animation" id="Animation_prj03"]
 length = 0.001
@@ -90,7 +90,10 @@ texture = ExtResource("6_hawga")
 process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("7_vut38")
+script = ExtResource("7_0edch")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(0, 27)
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="shield_changed" from="Player" to="." method="_on_player_shield_changed"]
