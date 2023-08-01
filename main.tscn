@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj3b5o02mbmbq"]
+[gd_scene load_steps=11 format=3 uid="uid://cj3b5o02mbmbq"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f8fjj"]
 [ext_resource type="PackedScene" uid="uid://wu5wq74iwpu7" path="res://player.tscn" id="2_awrxc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cuus2lgqr0svr" path="res://ui.tscn" id="4_xtkop"]
 [ext_resource type="Texture2D" uid="uid://c30hj538rqbd2" path="res://assets/mini_pixel_pack_3/UI objects/START (48 x 8).png" id="5_4ust6"]
 [ext_resource type="Texture2D" uid="uid://chup6k055u03a" path="res://assets/mini_pixel_pack_3/UI objects/GAME_OVER (72 x 8).png" id="6_hawga"]
+[ext_resource type="Script" path="res://PauseMenu.gd" id="7_vut38"]
 
 [sub_resource type="Animation" id="Animation_prj03"]
 length = 0.001
@@ -46,7 +47,6 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
-process_mode = 1
 script = ExtResource("1_f8fjj")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -85,6 +85,12 @@ stretch_mode = 3
 [node name="GameOver" type="TextureRect" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
 texture = ExtResource("6_hawga")
+
+[node name="PauseMenu" type="MarginContainer" parent="CanvasLayer"]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_vut38")
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="shield_changed" from="Player" to="." method="_on_player_shield_changed"]
