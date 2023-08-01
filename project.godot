@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="first_2d"
+config/name="2d_space_shooter"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -22,6 +26,12 @@ window/size/viewport_height=320
 window/size/window_width_override=480
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
 
 [input]
 
