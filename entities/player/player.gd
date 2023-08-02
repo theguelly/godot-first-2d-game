@@ -7,19 +7,20 @@ extends CharacterBody2D
 @export var cooldown = 0.5
 @export var bullet_scene : PackedScene
 
-var can_shoot = true
-var final_speed: float
+var final_speed : float
+var player_can_shoot : bool
 
 func _ready():
 	hide()
 
 func start(player_position):
-	ready.emit()
 	show()
 	position = player_position
-	$GunCooldown.wait_time = cooldown
 
 func _process(delta):
+	process_movement(delta)
+
+func process_movement(delta):
 	var input = Input.get_vector('left', 'right', 'up', 'down')
 	if input.x > 0:
 		$Ship.frame = 2
@@ -30,10 +31,7 @@ func _process(delta):
 	else:
 		$Ship.frame = 1
 		$Ship/Boosters.animation = 'forward'
-	## Move to WeaponComponent
-	if Input.is_action_pressed('shoot'):
-		shoot()
-	if not can_shoot:
+	if not player_can_shoot:
 		$Ship/Boosters.hide()
 		final_speed = speed * shooting_speed_penalty
 	else:
@@ -42,14 +40,10 @@ func _process(delta):
 	position += input * final_speed * delta
 	position = position.clamp(Vector2(16, 40), screensize - Vector2(16, 16))
 
-func shoot():
-	if not can_shoot:
-		return
-	can_shoot = false
-	$GunCooldown.start()
-	var b = bullet_scene.instantiate()
-	get_tree().root.add_child(b)
-	b.start(position + Vector2(0, -8))
+## --------------------------
+## Component Callback Section
+## --------------------------
 
-func _on_gun_cooldown_timeout():
-	can_shoot = true
+## Weapon Component Callback on Shoot Action
+func __weapon_component__on_weapon_shoot_callback(weapon_on_cooldown):
+	player_can_shoot = not weapon_on_cooldown

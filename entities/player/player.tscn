@@ -88,9 +88,6 @@ sprite_frames = SubResource("SpriteFrames_cwy8w")
 animation = &"forward"
 autoplay = "forward"
 
-[node name="GunCooldown" type="Timer" parent="."]
-one_shot = true
-
 [node name="HealthComponent" parent="." instance=ExtResource("7_v8p5q")]
 MAX_HEALTH = 5.0
 
@@ -101,5 +98,5 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("RectangleShape2D_5uf2d")
 
 [node name="WeaponComponent" parent="." instance=ExtResource("9_otnss")]
-
-[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
+bullet_scene = ExtResource("2_hdjkl")
+is_player = true

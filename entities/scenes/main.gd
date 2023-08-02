@@ -5,18 +5,18 @@ extends Node2D
 @onready var start_button = $CanvasLayer/CenterContainer/Start
 @onready var game_over = $CanvasLayer/CenterContainer/GameOver
 @onready var canvas_ui = $CanvasLayer/UI
-@onready var player = $Player
 @onready var env = $'/root/Env'
 
+@export var player : PackedScene
 @export var enemy : PackedScene
+var player_instance : Node:
+	set = set_player_instance
 var enemy_rows = 0
 var enemy_cols = 0
 var margin_cols = 0
 var score = 0
-var game = false
 
 func _ready():
-	initialize_connections()
 	canvas_ui.hide()
 	game_over.hide()
 	start_button.show()
@@ -24,10 +24,11 @@ func _ready():
 	print_debug(env.get_env('GAME_NAME'))
 
 func initialize_connections():
-	if player.has_signal('died'):
-		player.connect('died', self._on_player_died)
-	if player.has_signal('health_update'):
-		player.connect('health_update', self._on_player_health_changed)
+	if player_instance:
+		if player_instance.has_signal('died'):
+			player_instance.connect('died', self._on_player_died)
+		if player_instance.has_signal('health_update'):
+			player_instance.connect('health_update', self._on_player_health_changed)
 
 func spawn_enemies():
 	enemy_rows = randi_range(4, 7)
@@ -45,8 +46,8 @@ func _on_enemy_died(value):
 	score += value
 	canvas_ui.update_score(score)
 
-func _process(delta):
-	if game:
+func _process(_delta):
+	if player_instance:
 		if get_tree().get_nodes_in_group('enemies').size() == 0:
 			spawn_enemies()
 
@@ -54,16 +55,26 @@ func _on_start_pressed():
 	new_game()
 
 func new_game():
-	game = true
 	game_title.hide()
 	start_button.hide()
 	score = 0
 	canvas_ui.show()
 	canvas_ui.update_score(score)
-	player.start(Vector2(screensize.x / 2, screensize.y - 64))
+	player_instance = player.instantiate()
+
+func set_player_instance(value):
+	player_instance = value
+	if player_instance:
+		get_tree().root.add_child(player_instance)
+		initialize_connections()
+		player_instance.start(Vector2(screensize.x / 2, screensize.y - 64))
 
 func _on_player_died():
-	game = false
+	player_instance.queue_free()
+	player_instance = null
+	trigger_game_over()
+
+func trigger_game_over():
 	get_tree().call_group('enemies', 'queue_free')
 	get_tree().call_group('bullets', 'queue_free')
 	game_over.show()
