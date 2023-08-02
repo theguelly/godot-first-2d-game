@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dwdwyg5ddsygd"]
 
-[ext_resource type="Script" path="res://score_counter.gd" id="1_ex2qn"]
+[ext_resource type="Script" path="res://entities/ui/score_counter.gd" id="1_31b1j"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e3d54"]
 load_path = "res://.godot/imported/Number_font (8 x 8).png-e706f36eadb140398b2a07c1b9215654.ctex"
@@ -65,7 +65,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 alignment = 2
-script = ExtResource("1_ex2qn")
+script = ExtResource("1_31b1j")
 
 [node name="Digit0" type="TextureRect" parent="."]
 layout_mode = 2

@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = -250
+@export var speed = -350
 
 func start(pos):
 	position = pos
