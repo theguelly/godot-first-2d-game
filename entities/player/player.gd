@@ -1,24 +1,22 @@
-extends Area2D
-signal died
-signal shield_changed
+extends CharacterBody2D
 
 @onready var screensize = get_viewport_rect().size
+
 @export var speed = 150
-@export var cooldown = 0.75
+@export var shooting_speed_penalty = 0.5
+@export var cooldown = 0.5
 @export var bullet_scene : PackedScene
-@export var max_shield = 30
 
 var can_shoot = true
-var shield = 0:
-	set = set_shield
+var final_speed: float
 
 func _ready():
 	hide()
 
-func start():
+func start(player_position):
+	ready.emit()
 	show()
-	position = Vector2(screensize.x / 2, screensize.y - 64)
-	shield = max_shield
+	position = player_position
 	$GunCooldown.wait_time = cooldown
 
 func _process(delta):
@@ -32,13 +30,20 @@ func _process(delta):
 	else:
 		$Ship.frame = 1
 		$Ship/Boosters.animation = 'forward'
-	position += input * speed * delta
-	position = position.clamp(Vector2(8, 8), screensize - Vector2(8, 8))
+	## Move to WeaponComponent
 	if Input.is_action_pressed('shoot'):
 		shoot()
+	if not can_shoot:
+		$Ship/Boosters.hide()
+		final_speed = speed * shooting_speed_penalty
+	else:
+		$Ship/Boosters.show()
+		final_speed = speed
+	position += input * final_speed * delta
+	position = position.clamp(Vector2(16, 40), screensize - Vector2(16, 16))
 
 func shoot():
-	if not can_shoot or is_dead():
+	if not can_shoot:
 		return
 	can_shoot = false
 	$GunCooldown.start()
@@ -48,20 +53,3 @@ func shoot():
 
 func _on_gun_cooldown_timeout():
 	can_shoot = true
-
-func set_shield(value):
-	shield = min(max_shield, value)
-	shield_changed.emit(max_shield, shield)
-	if shield <= 0:
-		hide()
-		died.emit()
-
-func _on_area_entered(area):
-	if area.is_in_group('enemies'):
-		area.explode()
-		shield -= max_shield / 3
-
-func is_dead():
-	if shield <= 0:
-		return true
-	return false

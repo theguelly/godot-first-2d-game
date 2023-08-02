@@ -4,8 +4,9 @@ signal died
 
 var start_pos = Vector2.ZERO
 var speed = 0
-var enemy_bullet_scene : PackedScene = preload('res://enemy_bullet.tscn')
 var movement_tween: Tween
+
+@export var enemy_bullet_scene : PackedScene
 
 @onready var screensize  = get_viewport_rect().size
 @onready var animation_player = $AnimationPlayer
