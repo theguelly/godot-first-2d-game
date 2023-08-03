@@ -15,8 +15,10 @@ var enemy_rows = 0
 var enemy_cols = 0
 var margin_cols = 0
 var score = 0
+var pausable = false
 
 func _ready():
+	$BackgroundCanvas/Container/Background.size = screensize * 2
 	canvas_ui.hide()
 	game_over.hide()
 	start_button.show()
@@ -24,7 +26,7 @@ func _ready():
 	print_debug(env.get_env('GAME_NAME'))
 
 func initialize_connections():
-	if player_instance:
+	if is_instance_valid(player_instance):
 		if player_instance.has_signal('died'):
 			player_instance.connect('died', self._on_player_died)
 		if player_instance.has_signal('health_update'):
@@ -47,7 +49,7 @@ func _on_enemy_died(value):
 	canvas_ui.update_score(score)
 
 func _process(_delta):
-	if player_instance:
+	if is_instance_valid(player_instance):
 		if get_tree().get_nodes_in_group('enemies').size() == 0:
 			spawn_enemies()
 
@@ -67,11 +69,11 @@ func set_player_instance(value):
 	if player_instance:
 		get_tree().root.add_child(player_instance)
 		initialize_connections()
-		player_instance.start(Vector2(screensize.x / 2, screensize.y - 64))
+		player_instance.position = Vector2(screensize.x / 2, screensize.y - 64)
 
 func _on_player_died():
-	player_instance.queue_free()
-	player_instance = null
+	if is_instance_valid(player_instance):
+		player_instance.queue_free()
 	trigger_game_over()
 
 func trigger_game_over():

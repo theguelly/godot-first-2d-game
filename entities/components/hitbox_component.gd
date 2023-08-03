@@ -15,3 +15,7 @@ func _ready():
 func damage(area):
 	if area.is_in_group('enemies') or area.is_in_group('enemy_bullets'):
 		health_component.damage()
+	if area.is_in_group('enemies') and area.has_method('explode'):
+		area.explode()
+	if area.is_in_group('enemy_bullets'):
+		area.queue_free()

@@ -33,6 +33,6 @@ texture_under = ExtResource("2_dw4bi")
 texture_progress = ExtResource("3_knrpv")
 
 [node name="ScoreCounter" parent="HBoxContainer" instance=ExtResource("4_skjp1")]
-custom_minimum_size = Vector2(136, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 8

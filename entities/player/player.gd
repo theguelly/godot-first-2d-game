@@ -10,35 +10,51 @@ extends CharacterBody2D
 var final_speed : float
 var player_can_shoot : bool
 
-func _ready():
-	hide()
-
-func start(player_position):
-	show()
-	position = player_position
-
 func _process(delta):
-	process_movement(delta)
+	process_booster_animation(delta)
 
-func process_movement(delta):
-	var input = Input.get_vector('left', 'right', 'up', 'down')
-	if input.x > 0:
-		$Ship.frame = 2
-		$Ship/Boosters.animation = 'right'
-	elif input.x < 0:
-		$Ship.frame = 0
-		$Ship/Boosters.animation = 'left'
+func _notification(event):
+	if (event == NOTIFICATION_PREDELETE):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _input(event):
+	final_speed = speed
+	var input = Vector2.ZERO
+	if event is InputEventMouseMotion:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		input = Vector2(event.relative)
+		if event.relative.x > 0:
+			$Ship.frame = 2
+		elif event.relative.x < 0:
+			$Ship.frame = 0
+		else:
+			$Ship.frame = 1
+	elif event is InputEventScreenDrag:
+		input = event.relative
+		if event.velocity.x > 10:
+			$Ship.frame = 2
+		elif event.velocity.x < -10:
+			$Ship.frame = 0
 	else:
 		$Ship.frame = 1
+	position += input * final_speed * get_process_delta_time()
+	position = position.clamp(Vector2(16, 40), screensize - Vector2(16, 16))
+
+func process_booster_animation(delta):
+	if $Ship.frame == 0:
+		$Ship/Boosters.animation = 'left'
+	elif $Ship.frame == 1:
 		$Ship/Boosters.animation = 'forward'
+	elif $Ship.frame == 2:
+		$Ship/Boosters.animation = 'right'
+
+func movement_shooting_penalty():
 	if not player_can_shoot:
 		$Ship/Boosters.hide()
 		final_speed = speed * shooting_speed_penalty
 	else:
 		$Ship/Boosters.show()
 		final_speed = speed
-	position += input * final_speed * delta
-	position = position.clamp(Vector2(16, 40), screensize - Vector2(16, 16))
 
 ## --------------------------
 ## Component Callback Section

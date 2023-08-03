@@ -44,7 +44,7 @@ _data = {
 "bullet_1": SubResource("Animation_p36hs")
 }
 
-[node name="EnemyBullet" type="Area2D" groups=["bullets", "enemy_bullets"]]
+[node name="EnemyBullet" type="Area2D"]
 script = ExtResource("1_m2fio")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

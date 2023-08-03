@@ -75,6 +75,7 @@ size = Vector2(14, 14)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_m875u")
+speed = 100
 bullet_scene = ExtResource("2_hdjkl")
 
 [node name="Ship" type="Sprite2D" parent="."]
@@ -100,3 +101,4 @@ shape = SubResource("RectangleShape2D_5uf2d")
 [node name="WeaponComponent" parent="." instance=ExtResource("9_otnss")]
 bullet_scene = ExtResource("2_hdjkl")
 is_player = true
+autofire = true

@@ -6,6 +6,7 @@ extends Node2D
 @export var bullet_scene : PackedScene
 ## Flag if the component is used in a player-controlled node or not
 @export var is_player : bool = false
+@export var autofire : bool = false
 
 var parent_node: Node
 var weapon_on_cooldown : bool = false:
@@ -39,11 +40,11 @@ func initialize_weapon_component(attack_speed_value : float = ATTACK_SPEED):
 	$WeaponCooldown.wait_time = attack_speed
 
 func attack_speed_to_cooldown(value : float):
-	attack_speed = 1 / max(value, 0.01)
+	attack_speed = 1 / value
 
 func _process(_delta):
 	if is_player:
-		if Input.is_action_pressed('shoot'):
+		if autofire or Input.is_action_pressed('shoot'):
 			shoot(parent_node.position)
 	else:
 		pass
@@ -56,7 +57,7 @@ func shoot(character_position):
 	$WeaponCooldown.start()
 	bullet_scene_instance = bullet_scene.instantiate()
 	get_parent().get_tree().root.add_child(bullet_scene_instance)
-	bullet_scene_instance.start(character_position + Vector2(0, -8))
+	bullet_scene_instance.start(character_position + Vector2(0, -8), is_player)
 
 func _on_gun_cooldown_timeout():
 	weapon_on_cooldown = false

@@ -1,12 +1,17 @@
 extends Area2D
 
-@export var speed = -350
+@export var speed = 350
+var is_player : bool
 
-func start(pos):
+func start(pos, is_player_controlled = false):
 	position = pos
+	is_player = is_player_controlled
+	add_to_group('bullets')
+	if not is_player:
+		add_to_group('enemy_bullets')
 
 func _process(delta):
-	position.y += speed * delta
+	position.y += (-speed if is_player else speed) * delta
 
 func _on_area_entered(area):
 	if area.is_in_group('enemies'):
