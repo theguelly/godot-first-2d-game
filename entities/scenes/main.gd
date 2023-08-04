@@ -49,6 +49,7 @@ func _on_enemy_died(value):
 	canvas_ui.update_score(score)
 
 func _process(_delta):
+	screensize = get_viewport_rect().size
 	if is_instance_valid(player_instance):
 		if get_tree().get_nodes_in_group('enemies').size() == 0:
 			spawn_enemies()
@@ -69,7 +70,7 @@ func set_player_instance(value):
 	if player_instance:
 		get_tree().root.add_child(player_instance)
 		initialize_connections()
-		player_instance.position = Vector2(screensize.x / 2, screensize.y - 64)
+		player_instance.position = Vector2(screensize.x / 2, screensize.y - (screensize.y * 0.2))
 
 func _on_player_died():
 	if is_instance_valid(player_instance):

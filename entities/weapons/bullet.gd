@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 350
+@export var speed = 500
 var is_player : bool
 
 func start(pos, is_player_controlled = false):

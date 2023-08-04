@@ -29,6 +29,7 @@ func start(pos):
 	shoot_timer.start()
 
 func _process(delta):
+	screensize = get_viewport_rect().size
 	position.y += speed * delta
 	if position.y > screensize.y + 32:
 		start(start_pos)
